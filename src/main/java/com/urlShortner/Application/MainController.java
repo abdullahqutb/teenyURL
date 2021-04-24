@@ -26,7 +26,7 @@ public class MainController {
             Url result = urLsRepository.findByShortURL(link);
             if (result != null) {
 
-                String orig_url = result.getOrigURL();
+                String orig_url = result.getLongURL();
                 if (!orig_url.startsWith("http://") && !orig_url.startsWith("https://"))
                     orig_url = "http://" + orig_url;
 
