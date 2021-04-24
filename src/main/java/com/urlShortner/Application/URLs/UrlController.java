@@ -1,12 +1,14 @@
 package com.urlShortner.Application.URLs;
 
-//import com.datastax.oss.driver.api.core.uuid.Uuids;
+import com.urlShortner.Application.URLs.Url;
 import java.security.SecureRandom;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @CrossOrigin(origins = "http://localhost:8081")
@@ -29,23 +31,27 @@ public class UrlController {
     }
 
     @PostMapping(path = "/Url")
-    public @ResponseBody Url addNewURL(@RequestBody Url url) {
-        if (url.getOrigURL().equals("") || url.getOrigURL().trim().equals("")) {
+    public @ResponseBody Url addNewURL(
+            @RequestParam Long user_id, @RequestParam String orig_url, @RequestParam String short_url,
+            @RequestParam Long expires_at) {
+
+        if (orig_url.equals("") || orig_url.trim().equals("")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given URL is empty.");
         }
 
         Url new_url = new Url();
 //        new_url.setId(Uuids.timeBased());
-        new_url.setOrigURL(url.getOrigURL());
+        new_url.setOrigURL(orig_url);
         new_url.setCreatedAt(System.currentTimeMillis() / 1000L);
-        new_url.setUserID(url.getUserID());
+        new_url.setUserID(user_id);
         new_url.setShortURL(generateURL(10));
+        System.out.println(new_url.getShortURL());
 
-        if (url.getExpiresAt() == 0){
+        if (expires_at == 0){
 //           URL Expires after 2 days
             new_url.setExpiresAt((System.currentTimeMillis()/ 1000L) + (86400 * 2));
         } else {
-            new_url.setExpiresAt(url.getExpiresAt());
+            new_url.setExpiresAt(expires_at);
         }
 
         try {
