@@ -29,11 +29,11 @@ public class UserController {
         System.out.println("NAME HERE");
         System.out.println(user.getEmail());
         int strength = 10; // work factor of bcrypt
-        Password p = new Password(new BCryptPasswordEncoder().encode(encodedPw));
-        BCryptPasswordEncoder bCryptPasswordEncoder =
-                new BCryptPasswordEncoder(strength, new SecureRandom());
-        String encodedPassword = bCryptPasswordEncoder.encode(plainPassword);
-        String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+//        Password p = new Password(new BCryptPasswordEncoder().encode(encodedPw));
+//        BCryptPasswordEncoder bCryptPasswordEncoder =
+//                new BCryptPasswordEncoder(strength, new SecureRandom());
+//        String encodedPassword = bCryptPasswordEncoder.encode(plainPassword);
+//        String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         User newUser = new User();
 //        User newUser = new User();
 //        newUser.setId(Uuids.timeBased());
