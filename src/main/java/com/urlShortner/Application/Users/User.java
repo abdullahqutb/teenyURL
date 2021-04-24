@@ -2,13 +2,17 @@ package com.urlShortner.Application.Users;
 
 import java.util.UUID;
 
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
+//import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+//import org.springframework.data.cassandra.core.mapping.Table;
 
-@Table
+import javax.persistence.*;
+
+@Entity
+@Table(name="user")
 public class User {
-    @PrimaryKey
-    private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
     private String email;
     private String password;
@@ -18,7 +22,7 @@ public class User {
 
     }
 
-    public User(UUID id, String name, String email, String password, long createdAt) {
+    public User(Long id, String name, String email, String password, long createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -26,11 +30,11 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

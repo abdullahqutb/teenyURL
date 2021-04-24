@@ -1,16 +1,19 @@
 package com.urlShortner.Application.Requests;
 
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
+//import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+//import org.springframework.data.cassandra.core.mapping.Table;
 
+import javax.persistence.*;
 import java.util.UUID;
 
-@Table
+@Entity
+@Table(name="request")
 public class Request {
-    @PrimaryKey
-    private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    private UUID urlID;
+    private Long urlID;
     private String requestIP;
 //    private String countryCode;
     private String requestReferrer;
@@ -21,7 +24,7 @@ public class Request {
     }
 
     //public Request(UUID id, UUID urlID, String requestIP, String countryCode, String requestReferrer, long createdAt) {
-    public Request(UUID id, UUID urlID, String requestIP, String requestReferrer, long createdAt) {
+    public Request(Long id, Long urlID, String requestIP, String requestReferrer, long createdAt) {
         this.id = id;
         this.urlID = urlID;
         this.requestIP = requestIP;
@@ -30,19 +33,19 @@ public class Request {
         this.createdAt = createdAt;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public UUID getUrlID() {
+    public Long getUrlID() {
         return urlID;
     }
 
-    public void setUrlID(UUID urlID) {
+    public void setUrlID(Long urlID) {
         this.urlID = urlID;
     }
 

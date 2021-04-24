@@ -58,10 +58,11 @@ public class MainController {
 
     @GetMapping("/")
     public ResponseEntity<?> hello() {
+        System.out.println("Hello");
         return new ResponseEntity<>("API is running.", HttpStatus.OK);
     }
 
-    boolean addNewRequest(UUID url_id, String request_ip, String request_referrer) {
+    boolean addNewRequest(Long url_id, String request_ip, String request_referrer) {
         Request new_request = new Request();
         new_request.setUrlID(url_id);
         new_request.setRequestIP(request_ip);

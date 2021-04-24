@@ -1,6 +1,6 @@
 package com.urlShortner.Application.Users;
 
-import com.datastax.oss.driver.api.core.uuid.Uuids;
+//import com.datastax.oss.driver.api.core.uuid.Uuids;
 import com.urlShortner.Application.Requests.Request;
 import com.urlShortner.Application.Users.User;
 import com.urlShortner.Application.Users.UserRepository;
@@ -32,7 +32,8 @@ public class UserController {
 //        System.out.println(user.getEmail());
 //        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         User newUser = new User();
-        newUser.setId(Uuids.timeBased());
+//        User newUser = new User();
+//        newUser.setId(Uuids.timeBased());
         newUser.setName(user.getName());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());

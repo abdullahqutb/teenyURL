@@ -1,6 +1,6 @@
 package com.urlShortner.Application.URLs;
 
-import com.datastax.oss.driver.api.core.uuid.Uuids;
+//import com.datastax.oss.driver.api.core.uuid.Uuids;
 import java.security.SecureRandom;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -34,7 +34,7 @@ public class UrlController {
         }
 
         Url new_url = new Url();
-        new_url.setId(Uuids.timeBased());
+//        new_url.setId(Uuids.timeBased());
         new_url.setOrigURL(url.getOrigURL());
         new_url.setCreatedAt(System.currentTimeMillis() / 1000L);
         new_url.setUserID(url.getUserID());

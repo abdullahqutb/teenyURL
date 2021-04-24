@@ -1,14 +1,18 @@
 package com.urlShortner.Application.URLs;
 
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
+//import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+//import org.springframework.data.cassandra.core.mapping.Table;
+import javax.persistence.*;
 
 import java.util.UUID;
 
-@Table
+@Entity
+@Table(name = "url")
 public class Url {
-    @PrimaryKey
-    private UUID id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private Integer userID;
     private String origURL;
     private String shortURL;
@@ -23,7 +27,7 @@ public class Url {
 
     }
 
-    public Url(UUID id, Integer userID, String origURL, String shortURL, long createdAt, long expiresAt, String creatorIP,
+    public Url(Long id, Integer userID, String origURL, String shortURL, long createdAt, long expiresAt, String creatorIP,
             int visitorCount, int visitorLimit, Boolean isCustom) {
         this.id = id;
         this.userID = userID;
@@ -37,11 +41,11 @@ public class Url {
 //        this.isCustom = isCustom;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
