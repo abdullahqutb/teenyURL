@@ -22,6 +22,11 @@ public class UrlController {
     @Autowired
     private UrlRepository urlRepository;
 
+    @GetMapping(path="/Url")
+    public String foo() {
+        return "HELLO";
+    }
+
     @PostMapping(path = "/Url")
     public @ResponseBody Url addNewURL(@RequestBody Url url) {
         if (url.getOrigURL().equals("") || url.getOrigURL().trim().equals("")) {
