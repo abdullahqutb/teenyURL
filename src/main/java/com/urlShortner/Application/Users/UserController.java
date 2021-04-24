@@ -44,8 +44,8 @@ public class UserController {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Sign Up Failed!");
         }
-//        return newUser;
-        return "newUser";
+        return newUser;
+//        return "newUser";
     }
 
     @GetMapping("/User")
