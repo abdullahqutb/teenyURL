@@ -1,9 +1,7 @@
 package com.urlShortner.Application;
 
-import com.urlShortner.Application.Requests.Request;
-import com.urlShortner.Application.Requests.RequestRepository;
-import com.urlShortner.Application.URLs.Url;
-import com.urlShortner.Application.URLs.UrlRepository;
+import com.urlShortner.Application.Requests.*;
+import com.urlShortner.Application.URLs.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.UUID;
 
 public class MainController {
 
@@ -23,6 +20,9 @@ public class MainController {
     private UrlRepository urLsRepository;
     @Autowired
     private RequestRepository requestsRepository;
+
+    public MainController() {
+    }
 
     @GetMapping("/{pathVariable}")
     public ResponseEntity<?> redirect(@PathVariable("pathVariable")String link, HttpServletRequest request) {

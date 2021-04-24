@@ -1,16 +1,11 @@
 package com.urlShortner.Application.URLs;
 
-import java.util.UUID;
-
-//import org.springframework.data.cassandra.repository.AllowFiltering;
-//import org.springframework.data.cassandra.repository.CassandraRepository;
-
-import com.urlShortner.Application.URLs.Url;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UrlRepository extends CrudRepository<Url, UUID> {
+public interface UrlRepository extends CrudRepository<Url, Long> {
 //    @AllowFiltering
     public Url findByShortURL(String short_url);
     public Iterable<Url> findAllByUserID(Integer user_id);

@@ -1,7 +1,6 @@
 package com.urlShortner.Application.Requests;
 
 import com.urlShortner.Application.Requests.Request;
-import com.urlShortner.Application.Requests.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -40,7 +39,7 @@ public class RequestController {
 
     @PostMapping("/Request")
     public @ResponseBody
-    ResponseEntity<Request> addNewRequest(@RequestParam Long id, @RequestParam String request_ip, @RequestParam String request_referrer) {
+    ResponseEntity<Request> addNewRequest(@RequestParam Integer id, @RequestParam String request_ip, @RequestParam String request_referrer) {
         Request newReq = new Request();
         newReq.setUrlID(id);
         newReq.setRequestIP(request_ip);

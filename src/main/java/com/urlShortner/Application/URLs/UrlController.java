@@ -24,6 +24,7 @@ public class UrlController {
 
     @GetMapping(path="/Url")
     public String foo() {
+        System.out.println("hello");
         return "HELLO";
     }
 

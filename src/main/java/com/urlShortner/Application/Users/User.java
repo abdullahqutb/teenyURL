@@ -8,21 +8,25 @@ import java.util.UUID;
 import javax.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
+    @Column(name = "createdAt")
     private long createdAt;
 
     public User() {
 
     }
 
-    public User(Long id, String name, String email, String password, long createdAt) {
+    public User(Integer id, String name, String email, String password, long createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -30,11 +34,11 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

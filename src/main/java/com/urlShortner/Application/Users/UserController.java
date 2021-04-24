@@ -1,9 +1,8 @@
 package com.urlShortner.Application.Users;
 
 //import com.datastax.oss.driver.api.core.uuid.Uuids;
-import com.urlShortner.Application.Requests.Request;
-import com.urlShortner.Application.Users.User;
-import com.urlShortner.Application.Users.UserRepository;
+import com.urlShortner.Application.Requests.*;
+import com.urlShortner.Application.Users.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -29,7 +28,7 @@ public class UserController {
 //    public @ResponseBody User addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
     public @ResponseBody User addNewUser(@RequestBody User user) {
         System.out.println("HELLO");
-//        System.out.println(user.getEmail());
+        System.out.println(user.getEmail());
 //        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         User newUser = new User();
 //        User newUser = new User();
