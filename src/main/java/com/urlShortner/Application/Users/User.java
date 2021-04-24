@@ -14,14 +14,14 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
-    @Column(name = "createdAt")
+    @Column(name = "createdat")
     private long createdAt;
 
     public User() {
 
     }
 
-    public User(Integer id, String name, String email, String password, long createdAt) {
+    public User(Integer id, String name, String email, String password, Long createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;

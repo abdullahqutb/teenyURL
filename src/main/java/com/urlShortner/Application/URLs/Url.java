@@ -12,7 +12,7 @@ public class Url {
     @Column(name = "userID")
     private Integer userID;
     @Column(name = "longURL")
-    private String origURL;
+    private String longurl;
     @Column(name = "shortURL")
     private String shortURL;
     @Column(name = "createdAt")
@@ -22,10 +22,10 @@ public class Url {
 
     }
 
-    public Url(Integer id, Integer userID, String origURL, String shortURL, Long createdAt) {
+    public Url(Integer id, Integer userID, String longurl, String shortURL, Long createdAt) {
         this.id = id;
         this.userID = userID;
-        this.origURL = origURL;
+        this.longurl = longurl;
         this.shortURL = shortURL;
         this.createdAt = createdAt;
     }
@@ -46,12 +46,12 @@ public class Url {
         this.userID = userID;
     }
 
-    public String getOrigURL() {
-        return origURL;
+    public String getLongURL() {
+        return longurl;
     }
 
-    public void setOrigURL(String origURL) {
-        this.origURL = origURL;
+    public void setLongURL(String origURL) {
+        this.longurl = origURL;
     }
 
     public String getShortURL() {
@@ -75,7 +75,7 @@ public class Url {
         return "URL{" +
                 "id=" + id +
                 ", userID=" + userID +
-                ", origURL='" + origURL + '\'' +
+                ", origURL='" + longurl + '\'' +
                 ", shortURL='" + shortURL + '\'' +
                 ", createdAt=" + createdAt +
 //                ", creatorIP='" + creatorIP + '\'' +

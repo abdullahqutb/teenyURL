@@ -2,6 +2,8 @@ package com.urlShortner.Application.URLs;
 
 import com.urlShortner.Application.URLs.Url;
 import java.security.SecureRandom;
+
+import com.urlShortner.Application.Users.User;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -31,24 +33,24 @@ public class UrlController {
     }
 
     @PostMapping(path = "/Url")
-    public @ResponseBody Url addNewURL(
-            @RequestParam Integer user_id, @RequestParam String orig_url, @RequestParam String short_url,
-            @RequestParam Long expires_at) {
+    public @ResponseBody Url addNewURL(@RequestBody Url url) {
 
-        if (orig_url.equals("") || orig_url.trim().equals("")) {
+        if (url.getLongURL().equals("") || url.getLongURL().trim().equals("")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given URL is empty.");
         }
 
         Url new_url = new Url();
-        new_url.setShortURL(orig_url);
+        new_url.setShortURL(url.getLongURL());
         new_url.setCreatedAt(System.currentTimeMillis() / 1000L);
-        new_url.setUserID(user_id);
+        new_url.setUserID(url.getUserID());
         new_url.setShortURL(generateURL(10));
         System.out.println(new_url.getShortURL());
 
         try {
+            System.out.println("saving");
             new_url = urlRepository.save(new_url);
         } catch (DataIntegrityViolationException e) {
+            System.out.println("NOT saving");
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "The URL could not be registered");
         }
