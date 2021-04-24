@@ -37,13 +37,15 @@ public class UserController {
         User newUser = new User();
 //        User newUser = new User();
 //        newUser.setId(Uuids.timeBased());
-//        newUser.setName(user.getName());
-//        newUser.setEmail(user.getEmail());
-//        newUser.setPassword(user.getPassword());
+        newUser.setName(user.getName());
+        newUser.setEmail(user.getEmail());
+        newUser.setPassword(user.getPassword());
         newUser.setCreatedAt(System.currentTimeMillis() / value);
         try {
+            System.out.println("saving");
             newUser = userRepository.save(newUser);
         } catch (DataIntegrityViolationException e) {
+            System.out.println("NOT saving");
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Sign Up Failed!");
         }
