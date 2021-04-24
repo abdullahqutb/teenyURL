@@ -3,49 +3,46 @@ package com.urlShortner.Application.URLs;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "url")
+@Table(name = "urlDB")
 public class Url {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
     @Column(name = "userID")
-    private Long userID;
-    @Column(name = "origURL")
+    private Integer userID;
+    @Column(name = "longURL")
     private String origURL;
     @Column(name = "shortURL")
     private String shortURL;
     @Column(name = "createdAt")
     private Long createdAt;
-    @Column(name = "expiresAt")
-    private Long expiresAt;
 
     public Url() {
 
     }
 
-    public Url(Long id, Long userID, String origURL, String shortURL, Long createdAt, Long expiresAt) {
+    public Url(Integer id, Integer userID, String origURL, String shortURL, Long createdAt) {
         this.id = id;
         this.userID = userID;
         this.origURL = origURL;
         this.shortURL = shortURL;
         this.createdAt = createdAt;
-        this.expiresAt = expiresAt;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getUserID() {
+    public Integer getUserID() {
         return userID;
     }
 
-    public void setUserID(Long userID) {
+    public void setUserID(Integer userID) {
         this.userID = userID;
     }
 
@@ -73,13 +70,6 @@ public class Url {
         this.createdAt = createdAt;
     }
 
-    public Long getExpiresAt() {
-        return expiresAt;
-    }
-
-    public void setExpiresAt(Long expiresAt) {
-        this.expiresAt = expiresAt;
-    }
     @Override
     public String toString() {
         return "URL{" +
@@ -88,7 +78,6 @@ public class Url {
                 ", origURL='" + origURL + '\'' +
                 ", shortURL='" + shortURL + '\'' +
                 ", createdAt=" + createdAt +
-                ", expiresAt=" + expiresAt +
 //                ", creatorIP='" + creatorIP + '\'' +
 //                ", visitorCount=" + visitorCount +
 //                ", visitorLimit=" + visitorLimit +

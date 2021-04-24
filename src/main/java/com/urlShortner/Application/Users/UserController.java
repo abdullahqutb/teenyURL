@@ -1,7 +1,5 @@
 package com.urlShortner.Application.Users;
 
-//import com.datastax.oss.driver.api.core.uuid.Uuids;
-import com.urlShortner.Application.Requests.*;
 import com.urlShortner.Application.Users.*;
 
 import org.springframework.beans.factory.annotation.*;
@@ -10,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import sun.security.util.Password;
+
 
 import java.util.*;
 
@@ -25,12 +25,15 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/User/Signup")
-//    public String addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
     public @ResponseBody User addNewUser(@RequestBody User user) {
         System.out.println("NAME HERE");
         System.out.println(user.getEmail());
-//        System.out.println(user.getEmail());
-//        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+        int strength = 10; // work factor of bcrypt
+        Password p = new Password(new BCryptPasswordEncoder().encode(encodedPw));
+        BCryptPasswordEncoder bCryptPasswordEncoder =
+                new BCryptPasswordEncoder(strength, new SecureRandom());
+        String encodedPassword = bCryptPasswordEncoder.encode(plainPassword);
+        String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         User newUser = new User();
 //        User newUser = new User();
 //        newUser.setId(Uuids.timeBased());

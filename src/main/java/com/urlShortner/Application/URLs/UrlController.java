@@ -32,7 +32,7 @@ public class UrlController {
 
     @PostMapping(path = "/Url")
     public @ResponseBody Url addNewURL(
-            @RequestParam Long user_id, @RequestParam String orig_url, @RequestParam String short_url,
+            @RequestParam Integer user_id, @RequestParam String orig_url, @RequestParam String short_url,
             @RequestParam Long expires_at) {
 
         if (orig_url.equals("") || orig_url.trim().equals("")) {
@@ -40,19 +40,11 @@ public class UrlController {
         }
 
         Url new_url = new Url();
-//        new_url.setId(Uuids.timeBased());
-        new_url.setOrigURL(orig_url);
+        new_url.setShortURL(orig_url);
         new_url.setCreatedAt(System.currentTimeMillis() / 1000L);
         new_url.setUserID(user_id);
         new_url.setShortURL(generateURL(10));
         System.out.println(new_url.getShortURL());
-
-        if (expires_at == 0){
-//           URL Expires after 2 days
-            new_url.setExpiresAt((System.currentTimeMillis()/ 1000L) + (86400 * 2));
-        } else {
-            new_url.setExpiresAt(expires_at);
-        }
 
         try {
             new_url = urlRepository.save(new_url);
