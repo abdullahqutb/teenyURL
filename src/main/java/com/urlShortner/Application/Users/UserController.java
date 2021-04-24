@@ -25,10 +25,10 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/User/Signup")
-    public String addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
-//    public @ResponseBody User addNewUser(@RequestBody User user) {
+//    public String addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
+    public @ResponseBody User addNewUser(@RequestBody User user) {
         System.out.println("NAME HERE");
-        System.out.println(name);
+        System.out.println(user.getEmail());
 //        System.out.println(user.getEmail());
 //        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         User newUser = new User();
