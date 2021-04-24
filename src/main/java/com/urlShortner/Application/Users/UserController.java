@@ -25,9 +25,9 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/User/Signup")
-    public @ResponseBody User addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
+    public String addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
 //    public @ResponseBody User addNewUser(@RequestBody User user) {
-        System.out.println("HELLO");
+        System.out.println("NAME HERE");
         System.out.println(name);
 //        System.out.println(user.getEmail());
 //        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
@@ -44,7 +44,8 @@ public class UserController {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Sign Up Failed!");
         }
-        return newUser;
+//        return newUser;
+        return "newUser";
     }
 
     @GetMapping("/User")
