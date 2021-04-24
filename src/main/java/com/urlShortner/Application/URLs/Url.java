@@ -13,7 +13,7 @@ public class Url {
     private String origURL;
     private String shortURL;
     private long createdAt;
-//    private long expiresAt = 0;
+    private long expiresAt = 0;
 //    private String creatorIP;
 //    private int visitorCount;
 //    private int visitorLimit = 0;
@@ -30,7 +30,7 @@ public class Url {
         this.origURL = origURL;
         this.shortURL = shortURL;
         this.createdAt = createdAt;
-//        this.expiresAt = expiresAt;
+        this.expiresAt = expiresAt;
 //        this.creatorIP = creatorIP;
 //        this.visitorCount = visitorCount;
 //        this.visitorLimit = visitorLimit;
@@ -77,13 +77,13 @@ public class Url {
         this.createdAt = createdAt;
     }
 
-//    public long getExpiresAt() {
-//        return expiresAt;
-//    }
-//
-//    public void setExpiresAt(long expiresAt) {
-//        this.expiresAt = expiresAt;
-//    }
+    public long getExpiresAt() {
+        return expiresAt;
+    }
+
+    public void setExpiresAt(long expiresAt) {
+        this.expiresAt = expiresAt;
+    }
 //
 //    public String getCreatorIP() {
 //        return creatorIP;
@@ -117,7 +117,7 @@ public class Url {
                 ", origURL='" + origURL + '\'' +
                 ", shortURL='" + shortURL + '\'' +
                 ", createdAt=" + createdAt +
-//                ", expiresAt=" + expiresAt +
+                ", expiresAt=" + expiresAt +
 //                ", creatorIP='" + creatorIP + '\'' +
 //                ", visitorCount=" + visitorCount +
 //                ", visitorLimit=" + visitorLimit +
