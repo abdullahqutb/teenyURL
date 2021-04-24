@@ -25,17 +25,18 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/User/Signup")
-//    public @ResponseBody User addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
-    public @ResponseBody User addNewUser(@RequestBody User user) {
+    public @ResponseBody User addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
+//    public @ResponseBody User addNewUser(@RequestBody User user) {
         System.out.println("HELLO");
-        System.out.println(user.getEmail());
+        System.out.println(name);
+//        System.out.println(user.getEmail());
 //        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         User newUser = new User();
 //        User newUser = new User();
 //        newUser.setId(Uuids.timeBased());
-        newUser.setName(user.getName());
-        newUser.setEmail(user.getEmail());
-        newUser.setPassword(user.getPassword());
+//        newUser.setName(user.getName());
+//        newUser.setEmail(user.getEmail());
+//        newUser.setPassword(user.getPassword());
         newUser.setCreatedAt(System.currentTimeMillis() / value);
         try {
             newUser = userRepository.save(newUser);

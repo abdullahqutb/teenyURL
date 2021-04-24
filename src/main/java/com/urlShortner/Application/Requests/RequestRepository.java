@@ -11,6 +11,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RequestRepository extends CrudRepository<Request, Integer> {
-    public Iterable<Request> findAllByUrlID(Integer UrlID);
+public interface RequestRepository extends CrudRepository<Request, Long> {
+    public Iterable<Request> findAllByUrlID(Long UrlID);
 }

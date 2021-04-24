@@ -39,7 +39,7 @@ public class RequestController {
 
     @PostMapping("/Request")
     public @ResponseBody
-    ResponseEntity<Request> addNewRequest(@RequestParam Integer id, @RequestParam String request_ip, @RequestParam String request_referrer) {
+    ResponseEntity<Request> addNewRequest(@RequestParam Long id, @RequestParam String request_ip, @RequestParam String request_referrer) {
         Request newReq = new Request();
         newReq.setUrlID(id);
         newReq.setRequestIP(request_ip);

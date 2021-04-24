@@ -11,7 +11,7 @@ import java.util.UUID;
 public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name="urlID")
     private Long urlID;
@@ -20,14 +20,14 @@ public class Request {
     @Column(name="requestReferrer")
     private String requestReferrer;
     @Column(name="createdAt")
-    private long createdAt;
+    private Long createdAt;
 
     public Request(){
 
     }
 
     //public Request(UUID id, UUID urlID, String requestIP, String countryCode, String requestReferrer, long createdAt) {
-    public Request(long id, long urlID, String requestIP, String requestReferrer, long createdAt) {
+    public Request(Long id, Long urlID, String requestIP, String requestReferrer, Long createdAt) {
         this.id = id;
         this.urlID = urlID;
         this.requestIP = requestIP;
@@ -36,19 +36,19 @@ public class Request {
         this.createdAt = createdAt;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getUrlID() {
+    public Long getUrlID() {
         return urlID;
     }
 
-    public void setUrlID(long urlID) {
+    public void setUrlID(Long urlID) {
         this.urlID = urlID;
     }
 
@@ -68,11 +68,11 @@ public class Request {
         this.requestReferrer = requestReferrer;
     }
 
-    public long getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(long createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 }

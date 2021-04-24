@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "email")
@@ -26,7 +26,7 @@ public class User {
 
     }
 
-    public User(Integer id, String name, String email, String password, long createdAt) {
+    public User(Long id, String name, String email, String password, long createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -34,11 +34,11 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

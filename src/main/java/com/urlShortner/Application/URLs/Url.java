@@ -10,17 +10,17 @@ public class Url {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     @Column(name = "userID")
-    private long userID;
+    private Long userID;
     @Column(name = "origURL")
     private String origURL;
     @Column(name = "shortURL")
     private String shortURL;
     @Column(name = "createdAt")
-    private long createdAt;
+    private Long createdAt;
     @Column(name = "expiresAt")
-    private long expiresAt = 0;
+    private Long expiresAt;
 //    private String creatorIP;
 //    private int visitorCount;
 //    private int visitorLimit = 0;
@@ -30,7 +30,7 @@ public class Url {
 
     }
 
-    public Url(long id, long userID, String origURL, String shortURL, long createdAt, long expiresAt) {
+    public Url(Long id, Long userID, String origURL, String shortURL, Long createdAt, Long expiresAt) {
         this.id = id;
         this.userID = userID;
         this.origURL = origURL;
@@ -43,19 +43,19 @@ public class Url {
 //        this.isCustom = isCustom;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getUserID() {
+    public Long getUserID() {
         return userID;
     }
 
-    public void setUserID(long userID) {
+    public void setUserID(Long userID) {
         this.userID = userID;
     }
 
@@ -75,19 +75,19 @@ public class Url {
         this.shortURL = shortURL;
     }
 
-    public long getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(long createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public long getExpiresAt() {
+    public Long getExpiresAt() {
         return expiresAt;
     }
 
-    public void setExpiresAt(long expiresAt) {
+    public void setExpiresAt(Long expiresAt) {
         this.expiresAt = expiresAt;
     }
 //
