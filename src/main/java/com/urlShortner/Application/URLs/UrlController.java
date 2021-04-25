@@ -48,13 +48,21 @@ public class UrlController {
         return results;
     }
 
-    @GetMapping("/Urlfreq")
-    public List<Url> getFreqUrl(@RequestBody User user){
+    @GetMapping("/Url/all")
+    public List<Url> getUrls(){
+        //returns all the urls
+        List<Url> urls = (List<Url>) urlRepository.findAll();
 
+        return urls;
+    }
+
+    @GetMapping("/Url/freq")
+    public List<Url> getFreqUrl(@RequestBody Url searchUrl){
+        //gets the frequency of the shortURL given
         List<Url> urls = (List<Url>) urlRepository.findAll();
         List<Url> results = new ArrayList<>();
         for (Url url : urls) {
-            if(url.getUserID() == user.getId()){
+            if(url.getShortURL() == searchUrl.getShortURL()){
                 results.add(url);
             }
         }
