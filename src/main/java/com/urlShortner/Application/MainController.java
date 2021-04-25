@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,9 +46,19 @@ public class MainController {
         }
     }
 
-    @GetMapping("/")
-    public ResponseEntity<?> hello() {
-        System.out.println("Hello");
-        return new ResponseEntity<>("API is running.", HttpStatus.OK);
+    @Controller
+    public class LoginController {
+        @GetMapping("/")
+        public String test(Model model){
+            return "index";
+        }
+    }
+
+    @Controller
+    public class RegisterController {
+        @RequestMapping("/Register")
+        public String test(Model model){
+            return "register";
+        }
     }
 }
