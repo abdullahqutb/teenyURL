@@ -25,16 +25,19 @@ public class MainController {
 
     @GetMapping("/{pathVariable}")
     public ResponseEntity<?> redirect(@PathVariable("pathVariable")String link, HttpServletRequest request) {
+        System.out.println(link);
         if(link != null) {
             Url result = urLsRepository.findByShortURL(link);
             if (result != null) {
 
                 String orig_url = result.getLongURL();
+                System.out.println(orig_url);
                 if (!orig_url.startsWith("http://") && !orig_url.startsWith("https://"))
                     orig_url = "http://" + orig_url;
 
-                result = urLsRepository.save(result);
+//                result = urLsRepository.save(result);
 
+                System.out.println(result.toString());
                 HttpHeaders headers = new HttpHeaders();
                 headers.add("Location", orig_url);
                 return new ResponseEntity<String>(headers,HttpStatus.PERMANENT_REDIRECT);
