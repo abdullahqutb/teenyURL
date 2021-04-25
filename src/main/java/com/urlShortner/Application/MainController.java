@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,11 +24,11 @@ public class MainController {
     public MainController() {
     }
 
-    @GetMapping("/{pathVariable}")
-    public ResponseEntity<?> redirect(@PathVariable("pathVariable")String link, HttpServletRequest request) {
-        System.out.println(link);
-        if(link != null) {
-            Url result = urLsRepository.findByShortURL(link);
+    @RequestMapping("/{variable}")
+    public @ResponseBody int redirect(@PathVariable(value="variable") String shorturl) {
+        System.out.println(shorturl);
+        if(shorturl != null) {
+            Url result = urLsRepository.findByShortURL(shorturl);
             if (result != null) {
 
                 String orig_url = result.getLongURL();
@@ -40,12 +41,15 @@ public class MainController {
                 System.out.println(result.toString());
                 HttpHeaders headers = new HttpHeaders();
                 headers.add("Location", orig_url);
-                return new ResponseEntity<String>(headers,HttpStatus.PERMANENT_REDIRECT);
+//                return new ResponseEntity<String>(headers,HttpStatus.PERMANENT_REDIRECT);
+                return 0;
             } else {
-                return new ResponseEntity<>("Link does not exist.", HttpStatus.NOT_FOUND);
+                return 1;
+//                return new ResponseEntity<>("Link does not exist.", HttpStatus.NOT_FOUND);
             }
         } else {
-            return new ResponseEntity<>("Hello.", HttpStatus.I_AM_A_TEAPOT);
+            return 2;
+//            return new ResponseEntity<>("Hello.", HttpStatus.I_AM_A_TEAPOT);
         }
     }
 
