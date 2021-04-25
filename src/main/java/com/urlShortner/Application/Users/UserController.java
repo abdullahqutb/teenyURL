@@ -69,7 +69,7 @@ public class UserController {
         String email = user.getEmail();
         String password = user.getPassword();
         User myUser = userRepository.findByEmail(email);
-        ObjectMapper mapper = new ObjectMapper();
+//        ObjectMapper mapper = new ObjectMapper();
         if(myUser == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No user exists with this email!");
         }

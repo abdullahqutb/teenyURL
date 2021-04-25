@@ -34,13 +34,14 @@ public class UrlController {
 //        return "HELLO";
 //    }
 
-    @GetMapping("/Url")
-    public List<Url> getAllUrl(@RequestBody User user){
+    @GetMapping("/Url/{id}")
+    public List<Url> getAllUrl(@PathVariable("id")Integer id){
+        System.out.println(id);
 
         List<Url> urls = (List<Url>) urlRepository.findAll();
         List<Url> results = new ArrayList<>();
         for (Url url : urls) {
-            if(url.getUserID() == user.getId()){
+            if(url.getUserID() == id){
                 results.add(url);
             }
         }
