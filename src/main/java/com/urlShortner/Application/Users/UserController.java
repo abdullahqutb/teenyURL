@@ -1,5 +1,6 @@
 package com.urlShortner.Application.Users;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.urlShortner.Application.Users.*;
 
 import org.springframework.beans.factory.annotation.*;
@@ -62,21 +63,44 @@ public class UserController {
         }
     }
 
-    @PostMapping("/User")
-    public @ResponseBody
-    User loginUser(@RequestParam String email, @RequestParam String password) {
-        User temp = userRepository.findByEmail(email);
-        //ObjectMapper mapper = new ObjectMapper();
-        if (temp == null) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "User not found.");
-        } else {
-            //if (BCrypt.checkpw(password, temp.getPassword())) {
-            if(password.compareTo(temp.getPassword()) == 0){ //Comparing the provided password with the user's password
-                return temp;
-            } else
-                throw new ResponseStatusException(
-                        HttpStatus.BAD_REQUEST, "Invalid password.");
+
+    @PostMapping("/User/Login")
+    public @ResponseBody User loginUser(@RequestBody User user){
+        String email = user.getEmail();
+        String password = user.getPassword();
+        User myUser = userRepository.findByEmail(email);
+        ObjectMapper mapper = new ObjectMapper();
+        if(myUser == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No user exists with this email!");
+        }
+        else {
+            if(password.equals("")){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password not Entered!");
+            }
+            else if(!password.equals(myUser.getPassword())){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong Password Entered!");
+            }
+            else{
+                return myUser;
+            }
         }
     }
+    
+//    @PostMapping("/User")
+//    public @ResponseBody
+//    User loginUser(@RequestParam String email, @RequestParam String password) {
+//        User temp = userRepository.findByEmail(email);
+//        //ObjectMapper mapper = new ObjectMapper();
+//        if (temp == null) {
+//            throw new ResponseStatusException(
+//                    HttpStatus.NOT_FOUND, "User not found.");
+//        } else {
+//            //if (BCrypt.checkpw(password, temp.getPassword())) {
+//            if(password.compareTo(temp.getPassword()) == 0){ //Comparing the provided password with the user's password
+//                return temp;
+//            } else
+//                throw new ResponseStatusException(
+//                        HttpStatus.BAD_REQUEST, "Invalid password.");
+//        }
+//    }
 }
