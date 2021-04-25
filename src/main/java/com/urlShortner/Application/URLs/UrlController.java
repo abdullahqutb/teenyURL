@@ -95,6 +95,7 @@ public class UrlController {
         }
 
         if (urlRepository.findByShortURL(url.getShortURL()) != null){
+            System.out.println("error shorturl");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given URL is not unique.");
         }
 
