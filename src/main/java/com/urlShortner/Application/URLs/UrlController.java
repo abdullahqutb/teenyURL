@@ -85,6 +85,35 @@ public class UrlController {
         return sb.toString();
     }
 
+    @PostMapping("/Url/Custom")
+    public @ResponseBody Url addCustomUrl(@RequestBody Url url) {
+
+        if (url.getLongURL().equals("") || url.getLongURL().trim().equals("")) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given URL is empty.");
+        }
+
+        if (urlRepository.findByShortURL(url.getShortURL()) != null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given URL is not unique.");
+        }
+
+        Url new_url = new Url();
+        new_url.setLongURL(url.getLongURL());
+        new_url.setCreatedAt(System.currentTimeMillis() / 1000L);
+        new_url.setUserID(url.getUserID());
+        new_url.setShortURL(url.getShortURL());
+        System.out.println(new_url.getShortURL());
+
+        try {
+            System.out.println("saving");
+            new_url = urlRepository.save(new_url);
+        } catch (DataIntegrityViolationException e) {
+            System.out.println("NOT saving");
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "The URL could not be registered");
+        }
+        return new_url;
+    }
+
     private String generateURL(int len) {
         String short_url = generateRandomString(len);
 //        Check if current URL already exists in database
