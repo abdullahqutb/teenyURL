@@ -47,11 +47,21 @@ public class UrlController {
         return results;
     }
 
+    @GetMapping("/Urlfreq")
+    public List<Url> getFreqUrl(@RequestBody User user){
+
+        List<Url> urls = (List<Url>) urlRepository.findAll();
+        List<Url> results = new ArrayList<>();
+        for (Url url : urls) {
+            if(url.getUserID() == user.getId()){
+                results.add(url);
+            }
+        }
+        return results;
+    }
 
     @PostMapping("/Url")
     public @ResponseBody Url addNewURL(@RequestBody Url url) {
-
-        System.out.println("test");
         if (url.getLongURL().equals("") || url.getLongURL().trim().equals("")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given URL is empty.");
         }
@@ -62,13 +72,12 @@ public class UrlController {
         System.out.println(new_url.getCreatedAt());
         new_url.setUserID(url.getUserID());
         new_url.setShortURL(generateURL(10));
+        new_url.setFrequency(0);
         System.out.println(new_url.getShortURL());
 
         try {
-            System.out.println("saving");
             new_url = urlRepository.save(new_url);
         } catch (DataIntegrityViolationException e) {
-            System.out.println("NOT saving");
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "The URL could not be registered");
         }
@@ -104,6 +113,7 @@ public class UrlController {
         new_url.setCreatedAt(System.currentTimeMillis() / 1000L);
         new_url.setUserID(url.getUserID());
         new_url.setShortURL(url.getShortURL());
+        new_url.setFrequency(0);
         System.out.println(new_url.getShortURL());
 
         try {

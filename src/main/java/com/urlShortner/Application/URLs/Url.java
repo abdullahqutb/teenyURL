@@ -17,17 +17,20 @@ public class Url {
     private String shortURL;
     @Column(name = "createdat")
     private Long createdAt;
+    @Column(name = "frequency")
+    private Integer frequency;
 
     public Url() {
 
     }
 
-    public Url(Integer id, Integer userID, String longurl, String shortURL, Long createdAt) {
+    public Url(Integer id, Integer userID, String longurl, String shortURL, Long createdAt, Integer frequency) {
         this.id = id;
         this.userID = userID;
         this.longurl = longurl;
         this.shortURL = shortURL;
         this.createdAt = createdAt;
+        this.frequency = frequency;
     }
 
     public Integer getId() {
@@ -69,6 +72,12 @@ public class Url {
     public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
+
+    public Integer getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Integer frequency) { this.frequency = frequency; }
 
     @Override
     public String toString() {
