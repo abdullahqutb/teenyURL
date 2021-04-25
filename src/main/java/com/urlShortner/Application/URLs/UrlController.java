@@ -2,6 +2,8 @@ package com.urlShortner.Application.URLs;
 
 import com.urlShortner.Application.URLs.Url;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.urlShortner.Application.Users.User;
 import org.springframework.beans.factory.annotation.*;
@@ -26,13 +28,27 @@ public class UrlController {
     @Autowired
     private UrlRepository urlRepository;
 
-    @GetMapping(path="/Url")
-    public String foo() {
-        System.out.println("hello");
-        return "HELLO";
+//    @GetMapping("/Url")
+//    public String getAllUrls(@RequestBody User user) {
+//        System.out.println("hello");
+//        return "HELLO";
+//    }
+
+    @GetMapping("/Url")
+    public List<Url> getAllUrl(@RequestBody User user){
+
+        List<Url> urls = (List<Url>) urlRepository.findAll();
+        List<Url> results = new ArrayList<>();
+        for (Url url : urls) {
+            if(url.getUserID() == user.getId()){
+                results.add(url);
+            }
+        }
+        return results;
     }
 
-    @PostMapping(path = "/Url")
+
+    @PostMapping("/Url")
     public @ResponseBody Url addNewURL(@RequestBody Url url) {
 
         if (url.getLongURL().equals("") || url.getLongURL().trim().equals("")) {
@@ -40,7 +56,7 @@ public class UrlController {
         }
 
         Url new_url = new Url();
-        new_url.setShortURL(url.getLongURL());
+        new_url.setLongURL(url.getLongURL());
         new_url.setCreatedAt(System.currentTimeMillis() / 1000L);
         new_url.setUserID(url.getUserID());
         new_url.setShortURL(generateURL(10));

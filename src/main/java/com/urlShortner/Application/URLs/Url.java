@@ -72,16 +72,12 @@ public class Url {
 
     @Override
     public String toString() {
-        return "URL{" +
+        return "Url{" +
                 "id=" + id +
                 ", userID=" + userID +
-                ", origURL='" + longurl + '\'' +
+                ", longurl='" + longurl + '\'' +
                 ", shortURL='" + shortURL + '\'' +
                 ", createdAt=" + createdAt +
-//                ", creatorIP='" + creatorIP + '\'' +
-//                ", visitorCount=" + visitorCount +
-//                ", visitorLimit=" + visitorLimit +
-//                ", isCustom=" + isCustom +
                 '}';
     }
 }
