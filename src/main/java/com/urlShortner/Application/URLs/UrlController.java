@@ -1,6 +1,8 @@
 package com.urlShortner.Application.URLs;
 
 import com.urlShortner.Application.URLs.Url;
+
+import java.net.URL;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import com.urlShortner.Application.Users.User;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -56,17 +59,16 @@ public class UrlController {
         return urls;
     }
 
-    @GetMapping("/Url/freq")
-    public List<Url> getFreqUrl(@RequestBody Url searchUrl){
+    @PostMapping("/Url/freq")
+    public Integer getFreqUrl(@RequestBody Url searchUrl){
         //gets the frequency of the shortURL given
-        List<Url> urls = (List<Url>) urlRepository.findAll();
-        List<Url> results = new ArrayList<>();
-        for (Url url : urls) {
-            if(url.getShortURL() == searchUrl.getShortURL()){
-                results.add(url);
-            }
+        Url temp = urlRepository.findByShortURL(searchUrl.getShortURL());
+        if(temp == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Given shortUrl does not exists!");
         }
-        return results;
+        else{
+            return temp.getFrequency();
+        }
     }
 
     @PostMapping("/Url")
