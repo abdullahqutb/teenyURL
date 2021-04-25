@@ -87,6 +87,7 @@ public class Url {
                 ", longurl='" + longurl + '\'' +
                 ", shortURL='" + shortURL + '\'' +
                 ", createdAt=" + createdAt +
+                ", frequency=" + frequency +
                 '}';
     }
 }
