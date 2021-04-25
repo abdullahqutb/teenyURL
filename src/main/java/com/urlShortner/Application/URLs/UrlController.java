@@ -51,6 +51,7 @@ public class UrlController {
     @PostMapping("/Url")
     public @ResponseBody Url addNewURL(@RequestBody Url url) {
 
+        System.out.println("test");
         if (url.getLongURL().equals("") || url.getLongURL().trim().equals("")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given URL is empty.");
         }
@@ -58,6 +59,7 @@ public class UrlController {
         Url new_url = new Url();
         new_url.setLongURL(url.getLongURL());
         new_url.setCreatedAt(System.currentTimeMillis() / 1000L);
+        System.out.println(new_url.getCreatedAt());
         new_url.setUserID(url.getUserID());
         new_url.setShortURL(generateURL(10));
         System.out.println(new_url.getShortURL());

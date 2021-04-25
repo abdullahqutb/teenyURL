@@ -85,22 +85,4 @@ public class UserController {
             }
         }
     }
-    
-//    @PostMapping("/User")
-//    public @ResponseBody
-//    User loginUser(@RequestParam String email, @RequestParam String password) {
-//        User temp = userRepository.findByEmail(email);
-//        //ObjectMapper mapper = new ObjectMapper();
-//        if (temp == null) {
-//            throw new ResponseStatusException(
-//                    HttpStatus.NOT_FOUND, "User not found.");
-//        } else {
-//            //if (BCrypt.checkpw(password, temp.getPassword())) {
-//            if(password.compareTo(temp.getPassword()) == 0){ //Comparing the provided password with the user's password
-//                return temp;
-//            } else
-//                throw new ResponseStatusException(
-//                        HttpStatus.BAD_REQUEST, "Invalid password.");
-//        }
-//    }
 }
